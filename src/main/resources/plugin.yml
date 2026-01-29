@@ -1,0 +1,7 @@
+name: DodgeBall
+version: "${project.version}"
+main: me.sunmc.dodgeball.DodgeballPlugin
+api-version: 1.21
+author: SunMC, Liam
+description: Dodgeball Minigame plugin.
+depend: [ PlaceholderAPI ]
