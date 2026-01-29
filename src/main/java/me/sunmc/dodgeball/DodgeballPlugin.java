@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 /**
  * Main plugin class for Dodgeball minigame.
- * Modernized for Paper 1.21.1+ with Adventure API support.
+ * Modernized for Paper 1.21.11+ with Adventure API support.
  */
 public final class DodgeballPlugin extends JavaPlugin {
 

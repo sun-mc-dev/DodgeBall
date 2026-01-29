@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * PlaceholderAPI expansion for Dodgeball plugin.
- * Updated for Paper 1.21.1.
+ * Updated for Paper 1.21.11.
  */
 public class PlaceholderAPIExtension extends PlaceholderExpansion {
 
@@ -33,12 +33,12 @@ public class PlaceholderAPIExtension extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "LiamH";
+        return "SunMC";
     }
 
     @Override
     public @NotNull String getVersion() {
-        return "2.0.0";
+        return "1.0.0";
     }
 
     @Override
@@ -47,7 +47,7 @@ public class PlaceholderAPIExtension extends PlaceholderExpansion {
     }
 
     @Override
-    public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
+    public @Nullable String onRequest(@NotNull OfflinePlayer player, @NotNull String params) {
         User user = this.plugin.getUserStorage().getCachedUser(player.getUniqueId());
         if (user == null) {
             return "";
