@@ -1,4 +1,3 @@
-
 package me.sunmc.dodgeball.stats;
 
 import me.sunmc.dodgeball.DodgeBall;
@@ -123,29 +122,71 @@ public class PlayerStats {
         save();
     }
 
-    public void incrementKills() { kills.incrementAndGet(); }
-    public void incrementDeaths() { deaths.incrementAndGet(); }
-    public void incrementCatches() { catches.incrementAndGet(); }
+    public void incrementKills() {
+        kills.incrementAndGet();
+    }
+
+    public void incrementDeaths() {
+        deaths.incrementAndGet();
+    }
+
+    public void incrementCatches() {
+        catches.incrementAndGet();
+    }
+
     public void incrementWins() {
         wins.incrementAndGet();
         gamesPlayed.incrementAndGet();
     }
+
     public void incrementLosses() {
         losses.incrementAndGet();
         gamesPlayed.incrementAndGet();
     }
-    public void incrementShoots() { shoot.incrementAndGet(); }
-    public void addPlaytime(long milliseconds) { playtime.addAndGet(milliseconds); }
 
-    public @NonNull UUID getPlayerId() { return playerId; }
-    public int getKills() { return kills.get(); }
-    public int getDeaths() { return deaths.get(); }
-    public int getCatches() { return catches.get(); }
-    public int getWins() { return wins.get(); }
-    public int getLosses() { return losses.get(); }
-    public int getShoots() { return shoot.get(); }
-    public int getGamesPlayed() { return gamesPlayed.get(); }
-    public long getPlaytime() { return playtime.get(); }
+    public void incrementShoots() {
+        shoot.incrementAndGet();
+    }
+
+    public void addPlaytime(long milliseconds) {
+        playtime.addAndGet(milliseconds);
+    }
+
+    public @NonNull UUID getPlayerId() {
+        return playerId;
+    }
+
+    public int getKills() {
+        return kills.get();
+    }
+
+    public int getDeaths() {
+        return deaths.get();
+    }
+
+    public int getCatches() {
+        return catches.get();
+    }
+
+    public int getWins() {
+        return wins.get();
+    }
+
+    public int getLosses() {
+        return losses.get();
+    }
+
+    public int getShoots() {
+        return shoot.get();
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed.get();
+    }
+
+    public long getPlaytime() {
+        return playtime.get();
+    }
 
     public double getKDRatio() {
         int d = deaths.get();

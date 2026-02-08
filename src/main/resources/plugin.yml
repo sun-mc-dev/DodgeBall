@@ -15,13 +15,13 @@ commands:
   dodgeball:
     description: Main DodgeBall command
     usage: /dodgeball <subcommand>
-    aliases: [db, dodge]
+    aliases: [ db, dodge ]
     permission: dodgeball.use
 
   dodgeballadmin:
     description: DodgeBall admin commands
     usage: /dodgeballadmin <subcommand>
-    aliases: [dba, dbadmin]
+    aliases: [ dba, dbadmin ]
     permission: dodgeball.admin
 
 permissions:

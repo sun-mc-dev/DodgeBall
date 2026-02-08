@@ -3,7 +3,6 @@ package me.sunmc.dodgeball.ball;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityDataTypes;
-import com.github.retrooper.packetevents.protocol.entity.data.EntityMetadataProvider;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityTypes;
 import com.github.retrooper.packetevents.protocol.player.Equipment;
 import com.github.retrooper.packetevents.protocol.player.EquipmentSlot;
@@ -14,7 +13,6 @@ import me.sunmc.dodgeball.arena.Arena;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
 import me.sunmc.dodgeball.team.Team;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -43,18 +41,15 @@ public class Ball {
     private final @NonNull Arena arena;
     private final @Nullable DodgeBallPlayer thrower;
     private final @Nullable Team team;
-
-    private @NonNull Location location;
-    private @NonNull Vector velocity;
+    private final @NonNull Vector velocity;
     private final @NonNull ItemStack ballItem;
-
-    private boolean active;
-    private long spawnTime;
-    private int ticksLived;
-    private boolean onGround;
-
+    private final long spawnTime;
     private final @NonNull Set<UUID> viewers;
     private final @NonNull Map<UUID, Long> lastHitPlayers;
+    private @NonNull Location location;
+    private boolean active;
+    private int ticksLived;
+    private boolean onGround;
 
     public Ball(
             @NonNull Arena arena,
@@ -101,23 +96,24 @@ public class Ball {
 
             PacketEvents.getAPI().getPlayerManager().sendPacket(player, spawnPacket);
 
-            // Set metadata (invisible, small, marker, no gravity)
-            List<EntityData> metadata = new ArrayList<>();
+            // Prepare metadata
+            List<EntityData<?>> metadata = new ArrayList<>();
 
-            // Entity flags (invisible)
-            metadata.add(new EntityData(
+            // Index 0: Entity flags → invisible
+            metadata.add(new EntityData<>(
                     0,
                     EntityDataTypes.BYTE,
                     (byte) 0x20
             ));
 
-            // Armor stand flags (small, marker)
-            metadata.add(new EntityData(
+            // Index 15: Armor Stand flags → small + marker
+            metadata.add(new EntityData<>(
                     15,
                     EntityDataTypes.BYTE,
                     (byte) (0x01 | 0x10)
             ));
 
+            // Use the constructor that exists in your PacketEvents version
             WrapperPlayServerEntityMetadata metadataPacket =
                     new WrapperPlayServerEntityMetadata(entityId, metadata);
 
@@ -162,7 +158,6 @@ public class Ball {
         viewers.clear();
         active = false;
     }
-
 
     public void tick() {
         if (!active) {
@@ -331,7 +326,6 @@ public class Ball {
         }
     }
 
-
     private void spawnParticleTrail() {
         if (team == Team.RED) {
             location.getWorld().spawnParticle(Particle.DUST, location, 1,
@@ -359,15 +353,43 @@ public class Ball {
         );
     }
 
+    public int getEntityId() {
+        return entityId;
+    }
 
-    public int getEntityId() { return entityId; }
-    public @NonNull UUID getBallId() { return ballId; }
-    public @NonNull Arena getArena() { return arena; }
-    public @Nullable DodgeBallPlayer getThrower() { return thrower; }
-    public @Nullable Team getTeam() { return team; }
-    public @NonNull Location getLocation() { return location.clone(); }
-    public @NonNull Vector getVelocity() { return velocity.clone(); }
-    public boolean isActive() { return active; }
-    public int getTicksLived() { return ticksLived; }
-    public long getLifetime() { return System.currentTimeMillis() - spawnTime; }
+    public @NonNull UUID getBallId() {
+        return ballId;
+    }
+
+    public @NonNull Arena getArena() {
+        return arena;
+    }
+
+    public @Nullable DodgeBallPlayer getThrower() {
+        return thrower;
+    }
+
+    public @Nullable Team getTeam() {
+        return team;
+    }
+
+    public @NonNull Location getLocation() {
+        return location.clone();
+    }
+
+    public @NonNull Vector getVelocity() {
+        return velocity.clone();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public int getTicksLived() {
+        return ticksLived;
+    }
+
+    public long getLifetime() {
+        return System.currentTimeMillis() - spawnTime;
+    }
 }

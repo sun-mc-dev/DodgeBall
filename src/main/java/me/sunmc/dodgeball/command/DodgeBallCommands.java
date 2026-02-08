@@ -7,7 +7,7 @@ import me.sunmc.dodgeball.DodgeBall;
 import me.sunmc.dodgeball.arena.Arena;
 import me.sunmc.dodgeball.component.ArenaManager;
 import me.sunmc.dodgeball.component.GameManager;
-import me.sunmc.dodgeball.game.GameMode;
+import me.sunmc.dodgeball.game.PlayMode;
 import me.sunmc.dodgeball.menu.ArenaListMenu;
 import me.sunmc.dodgeball.menu.StatsMenu;
 import me.sunmc.tools.command.CommandFactory;
@@ -171,9 +171,9 @@ public class DodgeBallCommands implements CommandFactory {
                         return;
                     }
 
-                    GameMode mode;
+                    PlayMode mode;
                     try {
-                        mode = GameMode.valueOf(modeStr.toUpperCase());
+                        mode = PlayMode.valueOf(modeStr.toUpperCase());
                     } catch (IllegalArgumentException e) {
                         player.sendMessage(Component.text("§cInvalid game mode!", NamedTextColor.RED));
                         return;

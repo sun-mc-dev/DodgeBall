@@ -4,9 +4,9 @@ package me.sunmc.dodgeball.player;
 import me.sunmc.dodgeball.DodgeBall;
 import me.sunmc.dodgeball.ball.Ball;
 import me.sunmc.dodgeball.stats.PlayerStats;
+import me.sunmc.dodgeball.team.Team;
 import me.sunmc.tools.configuration.ConfigurationProvider;
 import org.bukkit.entity.Player;
-import me.sunmc.dodgeball.team.Team;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -103,16 +103,51 @@ public class DodgeBallPlayer {
         stats.save();
     }
 
-    public @NonNull Player getPlayer() { return player; }
-    public @NonNull UUID getUuid() { return uuid; }
-    public @NonNull PlayerStats getStats() { return stats; }
-    public me.sunmc.dodgeball.team.@Nullable Team getTeam() { return team; }
-    public void setTeam(@Nullable Team team) { this.team = team; }
-    public boolean isAlive() { return alive; }
-    public void setAlive(boolean alive) { this.alive = alive; }
-    public boolean canCatch() { return canCatch && alive; }
-    public void setCanCatch(boolean canCatch) { this.canCatch = canCatch; }
-    public int getBallsThrown() { return ballsThrown; }
-    public int getBallsCaught() { return ballsCaught; }
-    public int getSuccessfulHits() { return successfulHits; }
+    public @NonNull Player getPlayer() {
+        return player;
+    }
+
+    public @NonNull UUID getUuid() {
+        return uuid;
+    }
+
+    public @NonNull PlayerStats getStats() {
+        return stats;
+    }
+
+    public me.sunmc.dodgeball.team.@Nullable Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(@Nullable Team team) {
+        this.team = team;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public boolean canCatch() {
+        return canCatch && alive;
+    }
+
+    public void setCanCatch(boolean canCatch) {
+        this.canCatch = canCatch;
+    }
+
+    public int getBallsThrown() {
+        return ballsThrown;
+    }
+
+    public int getBallsCaught() {
+        return ballsCaught;
+    }
+
+    public int getSuccessfulHits() {
+        return successfulHits;
+    }
 }

@@ -22,8 +22,19 @@ public enum Team {
         this.armorColor = armorColor;
     }
 
-    public String getDisplayName() { return displayName; }
-    public TextColor getColor() { return color; }
-    public Material getMaterial() { return material; }
-    public Color getArmorColor() { return armorColor; }
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public TextColor getColor() {
+        return color;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public Color getArmorColor() {
+        return armorColor;
+    }
 }

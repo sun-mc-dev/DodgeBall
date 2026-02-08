@@ -6,7 +6,7 @@ import me.sunmc.dodgeball.arena.ArenaState;
 import me.sunmc.dodgeball.component.ArenaManager;
 import me.sunmc.dodgeball.component.GameManager;
 import me.sunmc.dodgeball.component.PlayerManager;
-import me.sunmc.dodgeball.game.GameMode;
+import me.sunmc.dodgeball.game.PlayMode;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
 import me.sunmc.dodgeball.stats.PlayerStats;
 import me.sunmc.dodgeball.team.Team;
@@ -62,7 +62,7 @@ public class DodgeBallAPIImpl implements DodgeBallAPI {
             @NonNull String displayName,
             int minPlayers,
             int maxPlayers,
-            @NonNull GameMode gameMode
+            @NonNull PlayMode gameMode
     ) {
         return CompletableFuture.supplyAsync(() -> {
             ArenaManager manager = plugin.getComponent(ArenaManager.class);

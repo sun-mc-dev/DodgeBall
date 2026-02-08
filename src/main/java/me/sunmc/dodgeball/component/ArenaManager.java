@@ -1,14 +1,13 @@
 package me.sunmc.dodgeball.component;
 
-import com.github.retrooper.packetevents.manager.player.PlayerManager;
 import me.sunmc.dodgeball.DodgeBall;
 import me.sunmc.dodgeball.arena.Arena;
+import me.sunmc.dodgeball.game.PlayMode;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
 import me.sunmc.tools.Tools;
 import me.sunmc.tools.component.Component;
 import me.sunmc.tools.configuration.ConfigurationProvider;
 import me.sunmc.tools.registry.AutoRegister;
-import me.sunmc.dodgeball.game.GameMode;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -95,7 +94,7 @@ public class ArenaManager implements Component {
         int minPlayers = node.node("min-players").getInt(2);
         int maxPlayers = node.node("max-players").getInt(10);
 
-        GameMode mode = GameMode.valueOf(modeStr.toUpperCase());
+        PlayMode mode = PlayMode.valueOf(modeStr.toUpperCase());
         Arena arena = new Arena(arenaId, displayName, minPlayers, maxPlayers, mode);
 
         // Load locations
@@ -199,7 +198,7 @@ public class ArenaManager implements Component {
         loadArenas();
     }
 
-    public void createArena(@NonNull String id, @NonNull String name, int min, int max, @NonNull GameMode mode) {
+    public void createArena(@NonNull String id, @NonNull String name, int min, int max, @NonNull PlayMode mode) {
         Arena arena = new Arena(id, name, min, max, mode);
         arenas.put(id, arena);
 
@@ -249,7 +248,7 @@ public class ArenaManager implements Component {
     }
 
     public boolean addPlayer(@NonNull Player player, @NonNull Arena arena) {
-        DodgeBallPlayer dbPlayer = Tools.getComponent(PlayerManager.class).getPlayer(player);
+        DodgeBallPlayer dbPlayer = Tools.getComponent(me.sunmc.dodgeball.component.PlayerManager.class).getPlayer(player);
 
         if (arena.addPlayer(dbPlayer)) {
             playerArenas.put(player.getUniqueId(), arena);
@@ -261,7 +260,7 @@ public class ArenaManager implements Component {
     public void removePlayer(@NonNull UUID playerId) {
         Arena arena = playerArenas.remove(playerId);
         if (arena != null) {
-            DodgeBallPlayer dbPlayer = Tools.getComponent(PlayerManager.class).getPlayer(playerId);
+            DodgeBallPlayer dbPlayer = Tools.getComponent(me.sunmc.dodgeball.component.PlayerManager.class).getPlayer(playerId);
             if (dbPlayer != null) {
                 arena.removePlayer(dbPlayer);
             }

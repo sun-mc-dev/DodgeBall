@@ -1,7 +1,7 @@
 package me.sunmc.dodgeball.arena;
 
 import me.sunmc.dodgeball.game.Game;
-import me.sunmc.dodgeball.game.GameMode;
+import me.sunmc.dodgeball.game.PlayMode;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
 import me.sunmc.dodgeball.team.Team;
 import net.kyori.adventure.text.Component;
@@ -9,7 +9,10 @@ import org.bukkit.Location;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -22,23 +25,21 @@ public class Arena {
     private final @NonNull String displayName;
     private final int minPlayers;
     private final int maxPlayers;
-    private final @NonNull GameMode gameMode;
-
-    private @NonNull ArenaState state;
+    private final @NonNull PlayMode gameMode;
     private final @NonNull Map<String, Location> locations;
     private final @NonNull List<DodgeBallPlayer> players;
     private final @NonNull Map<Team, List<DodgeBallPlayer>> teams;
-    private @Nullable Game currentGame;
-
     private final @NonNull ArenaSettings settings;
     private final @NonNull Object stateLock = new Object();
+    private @NonNull ArenaState state;
+    private @Nullable Game currentGame;
 
     public Arena(
             @NonNull String arenaId,
             @NonNull String displayName,
             int minPlayers,
             int maxPlayers,
-            @NonNull GameMode gameMode
+            @NonNull PlayMode gameMode
     ) {
         this.arenaId = arenaId;
         this.displayName = displayName;
@@ -139,32 +140,20 @@ public class Arena {
     }
 
     /**
-     * Changes arena state
-     */
-    public void setState(@NonNull ArenaState newState) {
-        synchronized (stateLock) {
-            if (this.state == newState) {
-                return;
-            }
-
-            ArenaState oldState = this.state;
-            this.state = newState;
-
-            onStateChange(oldState, newState);
-        }
-    }
-
-    /**
      * Handles state changes
      */
     private void onStateChange(@NonNull ArenaState oldState, @NonNull ArenaState newState) {
         switch (newState) {
             case STARTING -> prepareGameStart();
-            case IN_GAME -> {} // Game handles this
-            case ENDING -> {} // Game handles this
+            case IN_GAME -> {
+            } // Game handles this
+            case ENDING -> {
+            } // Game handles this
             case RESETTING -> resetArena();
-            case WAITING -> {} // Ready for players
-            default -> {}
+            case WAITING -> {
+            } // Ready for players
+            default -> {
+            }
         }
     }
 
@@ -242,15 +231,45 @@ public class Arena {
     }
 
     // Getters
-    public @NonNull String getArenaId() { return arenaId; }
-    public @NonNull String getDisplayName() { return displayName; }
-    public int getMinPlayers() { return minPlayers; }
-    public int getMaxPlayers() { return maxPlayers; }
-    public @NonNull GameMode getGameMode() { return gameMode; }
+    public @NonNull String getArenaId() {
+        return arenaId;
+    }
+
+    public @NonNull String getDisplayName() {
+        return displayName;
+    }
+
+    public int getMinPlayers() {
+        return minPlayers;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public @NonNull PlayMode getGameMode() {
+        return gameMode;
+    }
 
     public @NonNull ArenaState getState() {
         synchronized (stateLock) {
             return state;
+        }
+    }
+
+    /**
+     * Changes arena state
+     */
+    public void setState(@NonNull ArenaState newState) {
+        synchronized (stateLock) {
+            if (this.state == newState) {
+                return;
+            }
+
+            ArenaState oldState = this.state;
+            this.state = newState;
+
+            onStateChange(oldState, newState);
         }
     }
 
@@ -262,10 +281,17 @@ public class Arena {
         return new ArrayList<>(teams.get(team));
     }
 
-    public @Nullable Game getCurrentGame() { return currentGame; }
-    public void setCurrentGame(@Nullable Game game) { this.currentGame = game; }
+    public @Nullable Game getCurrentGame() {
+        return currentGame;
+    }
 
-    public @NonNull ArenaSettings getSettings() { return settings; }
+    public void setCurrentGame(@Nullable Game game) {
+        this.currentGame = game;
+    }
+
+    public @NonNull ArenaSettings getSettings() {
+        return settings;
+    }
 
     public boolean isFull() {
         return players.size() >= maxPlayers;

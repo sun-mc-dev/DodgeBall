@@ -8,9 +8,9 @@ import me.sunmc.dodgeball.component.ArenaManager;
 import me.sunmc.dodgeball.component.BallManager;
 import me.sunmc.dodgeball.component.PlayerManager;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
+import me.sunmc.tools.Tools;
 import me.sunmc.tools.registry.AutoRegister;
 import net.kyori.adventure.text.Component;
-import me.sunmc.dodgeball.game.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -44,7 +44,7 @@ public class GameListener implements Listener {
         Player player = event.getPlayer();
 
         // Load player data
-        PlayerManager manager = plugin.getComponent(PlayerManager.class);
+        PlayerManager manager = Tools.getComponent(PlayerManager.class);
         manager.loadPlayer(player);
     }
 
@@ -53,11 +53,11 @@ public class GameListener implements Listener {
         Player player = event.getPlayer();
 
         // Remove from arena
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         arenaManager.removePlayer(player.getUniqueId());
 
         // Unload player data
-        PlayerManager playerManager = plugin.getComponent(PlayerManager.class);
+        PlayerManager playerManager = Tools.getComponent(PlayerManager.class);
         playerManager.unloadPlayer(player.getUniqueId());
     }
 
@@ -71,14 +71,14 @@ public class GameListener implements Listener {
         }
 
         // Check if in arena
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena == null || arena.getState() != ArenaState.IN_GAME) {
             return;
         }
 
-        PlayerManager playerManager = plugin.getComponent(PlayerManager.class);
+        PlayerManager playerManager = Tools.getComponent(PlayerManager.class);
         DodgeBallPlayer dbPlayer = playerManager.getPlayer(player);
 
         if (!dbPlayer.isAlive()) {
@@ -104,7 +104,7 @@ public class GameListener implements Listener {
         Ball ball = new Ball(arena, dbPlayer, eyeLoc, velocity, ballItem);
 
         // Spawn ball
-        BallManager ballManager = plugin.getComponent(BallManager.class);
+        BallManager ballManager = Tools.getComponent(BallManager.class);
         ballManager.spawnBall(ball);
 
         // Remove snowball
@@ -128,7 +128,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {
@@ -143,7 +143,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null) {
@@ -158,7 +158,7 @@ public class GameListener implements Listener {
 
         if (to == null) return;
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena == null || arena.getState() != ArenaState.IN_GAME) {
@@ -186,7 +186,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {
@@ -202,7 +202,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null) {
@@ -219,7 +219,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null) {
@@ -232,7 +232,7 @@ public class GameListener implements Listener {
     public void onPlayerDropItem(@NonNull PlayerDropItemEvent event) {
         Player player = event.getPlayer();
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {
@@ -244,7 +244,7 @@ public class GameListener implements Listener {
     public void onPlayerPickupItem(@NonNull PlayerPickupArrowEvent event) {
         Player player = event.getPlayer();
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {
@@ -264,7 +264,7 @@ public class GameListener implements Listener {
         }
 
         // Block other commands in game
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {
@@ -284,7 +284,7 @@ public class GameListener implements Listener {
             return;
         }
 
-        ArenaManager arenaManager = plugin.getComponent(ArenaManager.class);
+        ArenaManager arenaManager = Tools.getComponent(ArenaManager.class);
         Arena arena = arenaManager.getPlayerArena(player);
 
         if (arena != null && arena.getState() == ArenaState.IN_GAME) {

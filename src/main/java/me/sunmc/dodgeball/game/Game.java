@@ -8,6 +8,7 @@ import me.sunmc.dodgeball.ball.Ball;
 import me.sunmc.dodgeball.component.BallManager;
 import me.sunmc.dodgeball.player.DodgeBallPlayer;
 import me.sunmc.dodgeball.team.Team;
+import me.sunmc.tools.Tools;
 import me.sunmc.tools.item.util.ItemStackBuilder;
 import me.sunmc.tools.scheduler.timer.SimpleTimer;
 import net.kyori.adventure.text.Component;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class Game {
 
     private final @NonNull Arena arena;
-    private final @NonNull GameMode gameMode;
+    private final @NonNull PlayMode gameMode;
     private final @NonNull SimpleTimer gameTimer;
     private final @NonNull DodgeBall plugin;
 
@@ -38,7 +39,7 @@ public class Game {
     private long startTime;
     private boolean active;
 
-    public Game(@NonNull Arena arena, @NonNull GameMode gameMode, @NonNull DodgeBall plugin) {
+    public Game(@NonNull Arena arena, @NonNull PlayMode gameMode, @NonNull DodgeBall plugin) {
         this.arena = arena;
         this.gameMode = gameMode;
         this.plugin = plugin;
@@ -155,7 +156,7 @@ public class Game {
         Location center = arena.getLocation("CENTER");
         if (center == null) return;
 
-        BallManager ballManager = plugin.getComponent(BallManager.class);
+        BallManager ballManager = Tools.getComponent(BallManager.class);
         ItemStack ballItem = createBallItem();
 
         // Spawn 5 neutral balls at center
@@ -301,7 +302,7 @@ public class Game {
     }
 
     private void cleanup() {
-        BallManager ballManager = plugin.getComponent(BallManager.class);
+        BallManager ballManager = Tools.getComponent(BallManager.class);
         ballManager.getArenaBalls(arena).forEach(Ball::despawnForAll);
 
         // Reset players
@@ -314,9 +315,20 @@ public class Game {
         return String.format("%02d:%02d", minutes, secs);
     }
 
+    public @Nullable Team getWinner() {
+        return winner;
+    }
+
     // Getters and setters
-    public void setWinner(@Nullable Team winner) { this.winner = winner; }
-    public @Nullable Team getWinner() { return winner; }
-    public boolean isActive() { return active; }
-    public @NonNull Arena getArena() { return arena; }
+    public void setWinner(@Nullable Team winner) {
+        this.winner = winner;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public @NonNull Arena getArena() {
+        return arena;
+    }
 }

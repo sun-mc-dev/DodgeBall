@@ -1,6 +1,6 @@
 package me.sunmc.dodgeball.game;
 
-public enum GameMode {
+public enum PlayMode {
     CLASSIC("Classic", "Last team standing wins"),
     ELIMINATION("Elimination", "Eliminated players don't respawn"),
     INFECTION("Infection", "Hit players join the other team"),
@@ -10,11 +10,16 @@ public enum GameMode {
     private final String displayName;
     private final String description;
 
-    GameMode(String displayName, String description) {
+    PlayMode(String displayName, String description) {
         this.displayName = displayName;
         this.description = description;
     }
 
-    public String getDisplayName() { return displayName; }
-    public String getDescription() { return description; }
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -5,6 +5,7 @@ import me.sunmc.dodgeball.api.DodgeBallAPIImpl;
 import me.sunmc.dodgeball.component.ArenaManager;
 import me.sunmc.tools.Tools;
 import me.sunmc.tools.configuration.LoadConfigurations;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * DodgeBall - Professional Minecraft DodgeBall Plugin
@@ -24,6 +25,14 @@ public class DodgeBall extends Tools {
 
     private static DodgeBall instance;
     private static DodgeBallAPI api;
+
+    public static @NotNull DodgeBall getInstance() {
+        return instance;
+    }
+
+    public static DodgeBallAPI getAPI() {
+        return api;
+    }
 
     @Override
     public void onPreLoad() {
@@ -67,13 +76,5 @@ public class DodgeBall extends Tools {
         getComponent(ArenaManager.class).reloadArenas();
 
         getLogger().info("DodgeBall configuration reloaded!");
-    }
-
-    public static DodgeBall getInstance() {
-        return instance;
-    }
-
-    public static DodgeBallAPI getAPI() {
-        return api;
     }
 }
