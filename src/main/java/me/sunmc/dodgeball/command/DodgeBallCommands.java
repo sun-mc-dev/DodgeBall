@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Complete Command System - NO TODOs
+ * Complete Command System - FIXED
  */
 @AutoRegister(CommandFactory.class)
 public class DodgeBallCommands implements CommandFactory {
@@ -148,22 +148,23 @@ public class DodgeBallCommands implements CommandFactory {
     }
 
     private @NonNull CommandAPICommand buildCreateCommand() {
+        // FIXED: Move GreedyStringArgument to the end
         return new CommandAPICommand("create")
                 .withArguments(
                         new StringArgument("id"),
-                        new GreedyStringArgument("name"),
                         new IntegerArgument("min", 1, 50),
                         new IntegerArgument("max", 1, 50),
                         new StringArgument("mode")
                                 .replaceSuggestions(ArgumentSuggestions.strings(
-                                        "CLASSIC", "ELIMINATION", "INFECTION", "KING_OF_THE_HILL", "CAPTURE_THE_FLAG"))
+                                        "CLASSIC", "ELIMINATION", "INFECTION", "KING_OF_THE_HILL", "CAPTURE_THE_FLAG")),
+                        new GreedyStringArgument("name")  // Moved to the end!
                 )
                 .executesPlayer((player, args) -> {
                     String id = (String) args.get("id");
-                    String name = (String) args.get("name");
                     int min = (int) args.get("min");
                     int max = (int) args.get("max");
                     String modeStr = (String) args.get("mode");
+                    String name = (String) args.get("name");
 
                     if (min > max) {
                         player.sendMessage(Component.text("§cMin players cannot be greater than max!",
@@ -391,7 +392,8 @@ public class DodgeBallCommands implements CommandFactory {
         player.sendMessage(Component.text("§6§l═══════════════════════════════"));
         player.sendMessage(Component.text("§c   DodgeBall Admin Commands"));
         player.sendMessage(Component.text("§6§l═══════════════════════════════"));
-        player.sendMessage(Component.text("§b/dba create <id> <name> <min> <max> <mode>"));
+        player.sendMessage(Component.text("§b/dba create <id> <min> <max> <mode> <name>"));
+        player.sendMessage(Component.text("§7  Create a new arena (name can have spaces)"));
         player.sendMessage(Component.text("§b/dba delete <arena>"));
         player.sendMessage(Component.text("§b/dba setup <arena> <type>"));
         player.sendMessage(Component.text("§b/dba start <arena>"));
