@@ -1,0 +1,154 @@
+# DodgeBall Configuration
+# Version: 1.0.0
+
+# General Settings
+settings:
+  # Enable debug mode for verbose logging
+  debug-mode: false
+
+  # Language file to use
+  language: "en_US"
+
+  # Async arena loading for better performance
+  async-arena-loading: true
+
+  # Maximum concurrent games allowed
+  max-concurrent-games: 10
+
+  # Auto-start game when enough players join
+  auto-start-enabled: true
+  auto-start-countdown: 10
+
+  # Enable spectator mode
+  spectator-mode-enabled: true
+
+# Performance Settings
+performance:
+  # Thread pool size for async operations
+  thread-pool-size: 4
+
+  # Ball physics tick rate (1 = every tick, 2 = every 2 ticks, etc.)
+  ball-tick-rate: 1
+
+  # Maximum active balls per arena
+  max-balls-per-arena: 50
+
+  # Packet update interval in ticks
+  packet-update-interval: 1
+
+  # Enable multi-threaded ball physics
+  parallel-ball-physics: true
+
+# Database Configuration
+database:
+  # Database type: sqlite, mysql, postgresql
+  type: "sqlite"
+
+  # SQLite settings
+  sqlite:
+    file: "dodgeball.db"
+
+  # MySQL/PostgreSQL settings
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "dodgeball"
+    username: "root"
+    password: "password"
+
+    # Connection pool settings
+    pool:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  # Auto-save interval in minutes
+  auto-save-interval: 5
+
+# Game Settings
+game:
+  # Default game mode
+  default-mode: "CLASSIC"
+
+  # Game duration in seconds
+  default-duration: 300
+
+  # Minimum players to start
+  min-players: 2
+
+  # Maximum players per arena
+  max-players: 10
+
+  # Respawn settings
+  respawn:
+    enabled: false
+    delay: 5
+    max-respawns: 3
+
+  # Power-ups
+  powerups:
+    enabled: true
+    spawn-interval: 30
+    duration: 10
+    types:
+      - "SPEED"
+      - "STRENGTH"
+      - "SHIELD"
+      - "MULTI_BALL"
+
+# Ball Physics
+ball:
+  # Ball speed multiplier
+  speed: 1.5
+
+  # Ball damage (in half hearts)
+  damage: 4
+
+  # Gravity strength
+  gravity: 0.03
+
+  # Air resistance
+  air-resistance: 0.99
+
+  # Bounce factor
+  bounce-factor: 0.6
+
+  # Maximum lifetime in seconds
+  max-lifetime: 10
+
+  # Custom model data for ball item
+  custom-model-data: 1
+
+# Statistics
+stats:
+  # Track detailed statistics
+  detailed-tracking: true
+
+  # Update interval in seconds
+  update-interval: 60
+
+  # Enable leaderboards
+  leaderboards-enabled: true
+
+  # Leaderboard update interval in minutes
+  leaderboard-update-interval: 5
+
+# Rewards
+rewards:
+  # Enable reward system
+  enabled: true
+
+  # Rewards for winning
+  win-rewards:
+    money: 100
+    experience: 50
+
+  # Rewards for kills
+  kill-rewards:
+    money: 10
+    experience: 5
+
+  # Rewards for catches
+  catch-rewards:
+    money: 15
+    experience: 10

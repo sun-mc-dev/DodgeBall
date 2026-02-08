@@ -1,0 +1,42 @@
+# Message Configuration
+
+prefix: "&6[DodgeBall] &r"
+
+# General Messages
+messages:
+  no-permission: "&cYou don't have permission to do that!"
+  player-only: "&cThis command can only be used by players!"
+  arena-not-found: "&cArena not found!"
+  not-in-arena: "&cYou're not in an arena!"
+  arena-full: "&cThis arena is full!"
+  game-in-progress: "&cA game is already in progress!"
+  already-in-arena: "&cYou're already in an arena!"
+
+  # Join/Leave
+  join-success: "&aYou joined arena: &e{arena}"
+  leave-success: "&eYou left the arena"
+  player-join-broadcast: "&e{player} &7joined the game! &f({current}/{max})"
+  player-leave-broadcast: "&e{player} &7left the game! &f({current}/{max})"
+
+  # Game Flow
+  game-starting: "&aGame starting in &e{seconds} &aseconds!"
+  game-started: "&a&lGAME STARTED! &r&7Good luck!"
+  game-ended: "&c&lGAME ENDED!"
+  team-win: "&a&l{team} TEAM WINS!"
+  game-draw: "&e&lDRAW! &r&7No team won!"
+
+  # Combat
+  hit-player: "&aYou hit &e{player}&a!"
+  hit-by-player: "&cYou were hit by &e{player}&c!"
+  catch-success: "&6Nice catch!"
+  ball-caught: "&c{player} caught your ball!"
+
+  # Stats
+  stats-header: "&6&l=== Stats for {player} ==="
+  stats-kills: "&7Kills: &f{kills}"
+  stats-deaths: "&7Deaths: &f{deaths}"
+  stats-catches: "&7Catches: &f{catches}"
+  stats-wins: "&7Wins: &f{wins}"
+  stats-losses: "&7Losses: &f{losses}"
+  stats-kd: "&7K/D: &f{kd}"
+  stats-winrate: "&7Win Rate: &f{winrate}%"

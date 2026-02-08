@@ -1,0 +1,47 @@
+# Cosmetic Configuration
+
+cosmetics:
+  # Ball skins
+  ball-skins:
+    default:
+      material: "SNOWBALL"
+      custom-model-data: 1
+      display-name: "&fDefault Ball"
+
+    fire:
+      material: "SNOWBALL"
+      custom-model-data: 2
+      display-name: "&cFire Ball"
+      particle: "FLAME"
+
+    ice:
+      material: "SNOWBALL"
+      custom-model-data: 3
+      display-name: "&bIce Ball"
+      particle: "SNOWFLAKE"
+
+    lightning:
+      material: "SNOWBALL"
+      custom-model-data: 4
+      display-name: "&eLightning Ball"
+      particle: "ELECTRIC_SPARK"
+
+  # Victory effects
+  victory-effects:
+    fireworks:
+      enabled: true
+      count: 5
+
+    sounds:
+      - "ENTITY_FIREWORK_ROCKET_LAUNCH"
+      - "ENTITY_PLAYER_LEVELUP"
+
+  # Kill effects
+  kill-effects:
+    explosion:
+      particle: "EXPLOSION_LARGE"
+      sound: "ENTITY_GENERIC_EXPLODE"
+
+    lightning:
+      particle: "ELECTRIC_SPARK"
+      sound: "ENTITY_LIGHTNING_BOLT_THUNDER"

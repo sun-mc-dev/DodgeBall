@@ -1,0 +1,34 @@
+# Ability/Power-up Configuration
+
+abilities:
+  speed:
+    display-name: "&bSpeed Boost"
+    material: "SUGAR"
+    duration: 10
+    amplifier: 2
+    custom-model-data: 100
+
+  strength:
+    display-name: "&cStrength"
+    material: "BLAZE_POWDER"
+    duration: 10
+    amplifier: 1
+    custom-model-data: 101
+
+  shield:
+    display-name: "&eShield"
+    material: "IRON_INGOT"
+    duration: 15
+    custom-model-data: 102
+
+  multi-ball:
+    display-name: "&dMulti Ball"
+    material: "SLIME_BALL"
+    ball-count: 3
+    custom-model-data: 103
+
+  invisibility:
+    display-name: "&7Invisibility"
+    material: "GLASS_BOTTLE"
+    duration: 8
+    custom-model-data: 104

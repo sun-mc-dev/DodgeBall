@@ -1,0 +1,87 @@
+name: DodgeBall
+version: '1.0.0'
+main: me.sunmc.dodgeball.DodgeBall
+api-version: '1.21'
+load: STARTUP
+author: SunMC
+description: Professional DodgeBall plugin with packet-based rendering
+website: https://github.com/sun-mc-dev/DodgeBall
+
+softdepend:
+  - Vault
+  - PlaceholderAPI
+
+commands:
+  dodgeball:
+    description: Main DodgeBall command
+    usage: /dodgeball <subcommand>
+    aliases: [db, dodge]
+    permission: dodgeball.use
+
+  dodgeballadmin:
+    description: DodgeBall admin commands
+    usage: /dodgeballadmin <subcommand>
+    aliases: [dba, dbadmin]
+    permission: dodgeball.admin
+
+permissions:
+  dodgeball.*:
+    description: All DodgeBall permissions
+    children:
+      dodgeball.use: true
+      dodgeball.admin: true
+      dodgeball.vip: true
+
+  dodgeball.use:
+    description: Basic plugin usage
+    default: true
+
+  dodgeball.admin:
+    description: Admin commands
+    default: op
+    children:
+      dodgeball.admin.create: true
+      dodgeball.admin.delete: true
+      dodgeball.admin.setup: true
+      dodgeball.admin.start: true
+      dodgeball.admin.stop: true
+      dodgeball.admin.reload: true
+
+  dodgeball.admin.create:
+    description: Create arenas
+    default: op
+
+  dodgeball.admin.delete:
+    description: Delete arenas
+    default: op
+
+  dodgeball.admin.setup:
+    description: Setup arenas
+    default: op
+
+  dodgeball.admin.start:
+    description: Force start games
+    default: op
+
+  dodgeball.admin.stop:
+    description: Force stop games
+    default: op
+
+  dodgeball.admin.reload:
+    description: Reload configuration
+    default: op
+
+  dodgeball.vip:
+    description: VIP features
+    default: false
+    children:
+      dodgeball.vip.cosmetics: true
+      dodgeball.vip.priority: true
+
+  dodgeball.vip.cosmetics:
+    description: Access to cosmetics
+    default: false
+
+  dodgeball.vip.priority:
+    description: Queue priority
+    default: false
