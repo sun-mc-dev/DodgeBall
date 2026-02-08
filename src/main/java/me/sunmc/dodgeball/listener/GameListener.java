@@ -115,7 +115,7 @@ public class GameListener implements Listener {
         }
 
         // Update stats
-        dbPlayer.getStats().incrementThrows();
+        dbPlayer.getStats().incrementShoots();
 
         // Play sound
         player.playSound(player.getLocation(),
@@ -198,7 +198,7 @@ public class GameListener implements Listener {
     public void onBlockBreak(@NonNull BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getGameMode() == GameMode.CREATIVE && player.hasPermission("dodgeball.admin")) {
+        if (player.getGameMode() == org.bukkit.GameMode.CREATIVE && player.hasPermission("dodgeball.admin")) {
             return;
         }
 
@@ -215,7 +215,7 @@ public class GameListener implements Listener {
     public void onBlockPlace(@NonNull BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getGameMode() == GameMode.CREATIVE && player.hasPermission("dodgeball.admin")) {
+        if (player.getGameMode() == org.bukkit.GameMode.CREATIVE && player.hasPermission("dodgeball.admin")) {
             return;
         }
 

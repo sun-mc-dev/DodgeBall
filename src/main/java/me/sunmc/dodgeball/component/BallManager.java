@@ -2,6 +2,7 @@ package me.sunmc.dodgeball.component;
 
 
 import me.sunmc.dodgeball.DodgeBall;
+import me.sunmc.dodgeball.arena.Arena;
 import me.sunmc.dodgeball.ball.Ball;
 import me.sunmc.tools.component.Component;
 import me.sunmc.tools.component.DependencyComponent;
@@ -9,7 +10,6 @@ import me.sunmc.tools.registry.AutoRegister;
 import org.bukkit.Bukkit;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.lang.foreign.Arena;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
